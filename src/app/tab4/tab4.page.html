@@ -1,11 +1,10 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Registro-incidente
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <h2>
     Registrar inscidente
@@ -27,11 +26,48 @@
       <ion-label> Otro </ion-label>
       <ion-input></ion-input>
       <ion-checkbox></ion-checkbox>
-    </ion-item [routerLink]="['../tab1']">
+    </ion-item [routerLink]="['tab1']">
    <ion-button color="primary">enviar</ion-button>
   </ion-list>
+</ion-content> -->
 
-</ion-content>
 
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Registro-incidente
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <ion-title size="large">
+    Registrar inscidente
+  </ion-title>
+  <ion-list> 
+    <ion-item>
+     <ion-label> Sin Novedad </ion-label>
+     <ion-checkbox></ion-checkbox>
+    </ion-item> 
+    <ion-item>
+      <ion-label> Persona Sospechosa </ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+   <ion-item>
+      <ion-label> Incendio </ion-label>
+      <ion-checkbox></ion-checkbox>
+   </ion-item>
+    <ion-item>
+      <ion-label> Otro </ion-label>
+      <ion-input placeholder="  ingrese más información"></ion-input>
+      <ion-checkbox></ion-checkbox>
+    
+    </ion-item>
+    <br><br>
+   <ion-button color="primary" size="large" class="mover">enviar</ion-button>
+  </ion-list>
+
+</ion-content> 
 
 

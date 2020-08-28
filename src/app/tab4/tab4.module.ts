@@ -13,7 +13,7 @@ import { Tab4PageRoutingModule } from './tab4-routing.module';
     IonicModule,
     CommonModule,
     FormsModule,
-    RouterModule.forChild([{ path: '', component: Tab4Page }]),,
+    RouterModule.forChild([{ path: '', component: Tab4Page }]),
     ExploreContainerComponentModule,
     Tab4PageRoutingModule
   ],
