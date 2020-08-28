@@ -5,7 +5,6 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <h2>
     Registrar inscidente
@@ -30,7 +29,6 @@
     </ion-item [routerLink]="['tab1']">
    <ion-button color="primary">enviar</ion-button>
   </ion-list>
-
 </ion-content> -->
 
 
@@ -43,9 +41,10 @@
 </ion-header>
 
 <ion-content>
-  <h2>
+  <br>
+  <ion-title size="large">
     Registrar inscidente
-  </h2>
+  </ion-title>
   <ion-list> 
     <ion-item>
      <ion-label> Sin Novedad </ion-label>
@@ -61,10 +60,14 @@
    </ion-item>
     <ion-item>
       <ion-label> Otro </ion-label>
-      <ion-input></ion-input>
+      <ion-input placeholder="  ingrese más información"></ion-input>
       <ion-checkbox></ion-checkbox>
+    
     </ion-item>
-   <ion-button color="primary">enviar</ion-button>
+    <br><br>
+   <ion-button color="primary" size="large" class="mover">enviar</ion-button>
   </ion-list>
 
 </ion-content> 
+
+
