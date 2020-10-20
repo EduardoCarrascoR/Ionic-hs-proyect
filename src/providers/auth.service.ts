@@ -19,7 +19,7 @@ export class AuthService {
   login (userdata: Guard){
     this.api.login(userdata.rut,userdata.password).toPromise()
       .then((res:any)=>{
-        if (res.mesage==='Login sucess') {
+        if (res.success) {
           localStorage.setItem('guard',res.data)
           this.router.navigate(['/tabs/tab1'])
         }else{
