@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { ModalController } from '@ionic/angular';
+import { SecondPage } from '../modals/second/second.page';
+
+
 
 @Component({
   selector: 'app-tab2',
@@ -50,6 +54,15 @@ export class Tab2Page {
   
 
   ]
-  constructor() {}
+  constructor(
+    private modalController: ModalController
+  ) {}
+
+  async openModal(){
+    const modal = await this.modalController.create({
+      component: SecondPage
+    });
+    return await modal.present();
+  }
 
 }
