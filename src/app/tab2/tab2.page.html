@@ -15,20 +15,19 @@
     <ion-item *ngFor="let visita of visitas">
       <ion-avatar>
 
-      </ion-avatar> 
-        <ion-label>
-          {{visita.title}}
-        </ion-label> 
-     
-       <ion-label>
-         {{visita.Rut}}
-       </ion-label>
-   </ion-item>
+      </ion-avatar>
+      <ion-label>
+        {{visita.title}}
+      </ion-label>
+
+      <ion-label>
+        {{visita.Rut}}
+      </ion-label>
+    </ion-item>
   </ion-list>
-  
+
   <ion-fab size="large" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon name="add" (click)="openModal()"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  

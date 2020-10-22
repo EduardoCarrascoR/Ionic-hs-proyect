@@ -11,23 +11,22 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup
 
   constructor(
-    private auth:AuthService,
+    private auth: AuthService,
     public formBuilder: FormBuilder,
-    
+
   ) { }
 
   ngOnInit() {
-    this.loginForm=this.createLoginForm()
+    this.loginForm = this.createLoginForm()
   }
-  
-  login(){
+
+  login() {
     this.auth.login(this.loginForm.value)
-    
   }
-  createLoginForm(){
+  createLoginForm() {
     return this.formBuilder.group({
-      rut:['', Validators.required],
-      password:['', Validators.required ]
+      rut: ['', Validators.required],
+      password: ['', Validators.required]
     })
   }
 
