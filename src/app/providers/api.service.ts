@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Guard } from '../models/guard.interface'
+import { Guard } from '../models/guard.interface';
+import { Incident } from '../models/incident.interface'
 @Injectable({
   providedIn: 'root'
 })
@@ -24,6 +25,11 @@ export class ApiService {
     return this.http.get<Guard[]>(this.apiUrl + '/users/Guards');
   }
 
+  register(incident: string, other: string): Observable<Incident> {
+    return this.http.post<Incident>(this.apiUrl + '/auth/loginApp', { incident, other });
+  }
+
+  
   //addIncident(): 
 /*  getAllActivities(course_id: string, unit_number: string, lesson_number: string): Observable<Activity[]> {
     return this.http.get<Activity[]>(`${this.apiUrl}/course/${course_id}/unit/${unit_number}/lesson/${lesson_number}/activities`);

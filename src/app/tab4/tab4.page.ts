@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-tab4',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
 })
 export class Tab4Page {
 
-  constructor() {}
+  constructor(private formBuilder: FormBuilder) {
+  }
+
+  createRegisterForm() {
+    return this.formBuilder.group({
+      incident: ['', Validators.required],
+      other: ['', Validators.required]
+    })
+  }
 
 }

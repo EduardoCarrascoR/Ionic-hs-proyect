@@ -11,13 +11,14 @@ import { AppComponent } from './app.component';
 import { ApiService } from './providers/api.service';
 import { AuthService } from './providers/auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule, FormControl, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Toast } from '@ionic-native/toast/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule,FormsModule,ReactiveFormsModule, AppRoutingModule, FormControl],
+  imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule,ReactiveFormsModule, AppRoutingModule],
   providers: [
     StatusBar,
     ApiService,
@@ -29,3 +30,4 @@ import { Toast } from '@ionic-native/toast/ngx';
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+

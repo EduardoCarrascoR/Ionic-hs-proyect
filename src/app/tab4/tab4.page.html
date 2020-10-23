@@ -45,6 +45,8 @@
   <ion-title size="large">
     Registrar incidente
   </ion-title>
+ <!-- <ion-form [formGroup]="registerForm" (ngSubmit)="register()"> --> 
+    <form>
   <ion-list> 
     <ion-item>
      <ion-label> Sin Novedad </ion-label>
@@ -56,18 +58,26 @@
     </ion-item>
    <ion-item>
       <ion-label> Incendio </ion-label>
+<!-- <ion-checkbox [formControlName] = ""></ion-checkbox> --> 
       <ion-checkbox></ion-checkbox>
    </ion-item>
     <ion-item>
       <ion-label> Otro </ion-label>
-      <ion-textarea placeholder="  ingrese más información"></ion-textarea>
+      <ion-textarea placeholder="ingrese más información" ></ion-textarea>
+<!-- <ion-checkbox [formControlName] = ""></ion-checkbox> --> 
       <ion-checkbox></ion-checkbox>
-    
+
     </ion-item>
     <br><br>
-   <ion-button color="primary" routerLink=".\tab\tab" size="large" class="mover">enviar</ion-button>
+    <ion-grid>
+      <ion-row >
+        <ion-col >
+          <ion-button color="primary" type="submit" expand="block" shape="round" size="large">Registrar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-list>
-
+</form>
 </ion-content> 
 
 
