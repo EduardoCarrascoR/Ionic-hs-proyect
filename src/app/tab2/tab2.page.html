@@ -1,22 +1,22 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="headercolor">
   <ion-toolbar>
     <ion-title>
       Listado Visitas
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content class="valign-wrapper2">
   <ion-header>
     <ion-title>
-      Ronda lugas N°29
+    <br><br>
     </ion-title>
   </ion-header>
-  <ion-list>
+  <ion-list class="valign-wrapper4">
     <ion-item *ngFor="let visita of visitas">
       <ion-avatar>
 
       </ion-avatar>
-      <ion-label>
+      <ion-label >
         {{visita.title}}
       </ion-label>
 
