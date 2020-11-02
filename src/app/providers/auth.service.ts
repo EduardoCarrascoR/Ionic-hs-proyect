@@ -20,7 +20,8 @@ export class AuthService {
     this.api.login(userdata.rut, userdata.password).toPromise()
       .then((res: any) => {
         if (res.success) {
-          localStorage.setItem('guard', res.data)
+          console.table(res.data)
+          localStorage.setItem('guard', JSON.stringify(res.data))
           this.router.navigate(['/tabs/tab1'])
         } else {
           throw new Error('no se logro logear')
