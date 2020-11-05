@@ -12,12 +12,24 @@
     </ion-title>
   </ion-header>
   <ion-list class="valign-wrapper4">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+             <ion-label>NOMBRE</ion-label>
+             <ion-label>PATENTE</ion-label>
+             <ion-label>RUT</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    
     <ion-item *ngFor="let visita of visitas">
-      <ion-avatar>
-
-      </ion-avatar>
-      <ion-label >
+      <ion-label>
         {{visita.title}}
+      </ion-label>
+      <ion-label>
+        {{visita.Patente}}
       </ion-label>
       <ion-label>
         {{visita.Rut}}
