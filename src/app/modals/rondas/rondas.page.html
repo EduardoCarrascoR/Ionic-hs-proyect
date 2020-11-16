@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lista de rondas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="valign-wrapper2">
+  <ion-grid >
+    <ion-row>
+      <ion-col>
+        <ion-item class="wrapper2" (click)="openUrl()">
+          <ion-label>I{{ "10/30/2020" | date: 'short'}}</ion-label>
+        </ion-item>
+        <br>
+        <ion-item class="wrapper2">
+          <ion-label>{{ "11/30/2020" | date: 'short'}}</ion-label>
+        </ion-item>
+        <br>
+        <ion-item class="wrapper2">
+          <ion-label>{{ "12/30/2020" | date: 'short'}}</ion-label>
+        </ion-item>
+        <ion-item >
+          <ion-list *ngFor="let shift of shifts$ | async">
+            <ion-label>{{{shift.dates+' '+shift.start+' '+shift.finish}
+            </ion-label>
+          </ion-list>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

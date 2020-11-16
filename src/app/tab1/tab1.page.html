@@ -14,9 +14,7 @@
   <br><br>
 
   <ion-card class="back">
-    <ion-item>
-      <ion-img size="small" src="..\assets\imgs\mapa.png"></ion-img>
-    </ion-item>
+    
     <ion-card-content>
       <ion-item>
         <ion-label>
@@ -25,7 +23,7 @@
         <!-- <ion-select value="brown" okText="Okay" cancelText="Dismiss" *ngFor="let shift of shifts$ | async" -->
         <ion-select value="brown" okText="Okay" cancelText="Dismiss" class="ion-text-wrap"
           (ngSubmit)="getGuardShift()">
-          <ion-select-option class="ion-text-wrap">
+          <ion-select-option class="ion-text-wrap" >
             {{ "10/30/2020" | date: 'short'}}
           </ion-select-option>
           <ion-select-option class="ion-text-wrap">
@@ -42,6 +40,9 @@
 
     </ion-card-content>
   </ion-card>
+    <ion-button size="large" expand="block" (click)="openModal()" color="light">ver rondas de la semana</ion-button>
+  <br><br>
+  <br>
   <ion-button color="primary" size="large" routerLink="/login" expand="block" shape="round" size="large">Iniciar turno
   </ion-button>
 </ion-content>

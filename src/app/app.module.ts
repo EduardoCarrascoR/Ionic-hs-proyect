@@ -13,7 +13,7 @@ import { AuthService } from './providers/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Toast } from '@ionic-native/toast/ngx';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +23,7 @@ import { Toast } from '@ionic-native/toast/ngx';
     StatusBar,
     ApiService,
     AuthService,
+    InAppBrowser,
     SplashScreen,
     Toast,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
