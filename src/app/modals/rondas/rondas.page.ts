@@ -31,3 +31,4 @@ export class RondasPage implements OnInit {
   }
   
 }
+

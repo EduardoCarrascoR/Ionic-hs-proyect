@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Guard } from '../models/guard.interface';
 import { Incident } from '../models/incident.interface';
 import { Shift } from '../models/shift.interface';
+import { GuardsCheckEnd } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -31,7 +32,7 @@ export class ApiService {
   }
   
     getGuardShift(): Observable<Shift[]>{
-    return this.http.get<Shift[]>(this.apiUrl + '/shifts/guardShifts/' + '28');
+    return this.http.get<Shift[]>(this.apiUrl + '/shifts/guardShifts/'+ '28');
   }
   
   
