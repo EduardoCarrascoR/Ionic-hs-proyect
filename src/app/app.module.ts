@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Toast } from '@ionic-native/toast/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx'
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -25,8 +25,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     AuthService,
     InAppBrowser,
     SplashScreen,
+    LocalNotifications,
     Toast,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy ,}
   ],
   bootstrap: [AppComponent]
 })

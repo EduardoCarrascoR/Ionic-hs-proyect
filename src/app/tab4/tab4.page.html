@@ -42,10 +42,38 @@
 
 <ion-content class="valign-wrapper2">
   <br>
-  <ion-title size="large">
-    
-  </ion-title>
- <!-- <ion-form [formGroup]="registerForm" (ngSubmit)="register()"> --> 
+  <ion-title size="large"> </ion-title>
+   
+  <ion-item color="primary" shape="round">
+    <ion-label>INICIAR TURNO</ion-label>
+    <ion-toggle (click)=Notification() color="dark"></ion-toggle> 
+  </ion-item>
+ <br><br>
+  
+ <ion-item color="medium">
+  <ion-label>
+    Elegir turno a iniciar:
+  </ion-label>
+  <!-- <ion-select value="brown" okText="Okay" cancelText="Dismiss" *ngFor="let shift of shifts$ | async" -->
+  <ion-select value="brown" okText="Okay" cancelText="Dismiss" class="ion-text-wrap"
+    (ngSubmit)="getGuardShift()">
+    <ion-select-option class="ion-text-wrap" >
+      {{ "10/30/2020" | date: 'short'}}
+    </ion-select-option>
+    <ion-select-option class="ion-text-wrap">
+      {{ "11/30/2020" | date: 'short'}}
+    </ion-select-option>
+    <ion-select-option class="ion-text-wrap">
+      {{ "12/30/2020" | date: 'short'}}
+    </ion-select-option>
+    <!-- <ion-select-option hidden>
+      {{shift.dates+' '+shift.start+' '+shift.finish}}
+    </ion-select-option> -->
+  </ion-select>
+</ion-item>
+ <br><br>
+ 
+  <!-- <ion-form [formGroup]="registerForm" (ngSubmit)="register()"> --> 
     <form class="valign-wrapper4">
   <ion-list> 
     <ion-item>
