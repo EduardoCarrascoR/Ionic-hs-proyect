@@ -20,18 +20,16 @@ export class Tab1Page implements OnInit {
   constructor(
     private api: ApiService,
     private browser: InAppBrowser,
-    private modalController: ModalController,
-    private auth: AuthService
-  ) { }
-  ngOnInit() {
-    
-  }
-  async openModal() {
-    const modal = await this.modalController.create({
-      component: RondasPage
-    });
-    return await modal.present();
-  }
+    private modalController: ModalController
+  ) {}
+ngOnInit (){
+}
+async openModal() {
+  const modal = await this.modalController.create({
+    component: RondasPage
+  });
+  return await modal.present();
+}
 
   openUrl() {
     this.browser.create('https://www.google.cl/maps/', '_self')
