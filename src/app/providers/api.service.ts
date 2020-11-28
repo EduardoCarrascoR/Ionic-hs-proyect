@@ -12,7 +12,7 @@ export class ApiService {
 
   // private apiUrl = 'http://localhost:3000/api'
   private apiUrl = 'https://highsecurity-app.herokuapp.com/api'
-                    
+
   constructor(
     private http: HttpClient
   ) {
@@ -30,22 +30,22 @@ export class ApiService {
   register(data: Incident): Observable<Incident> {
     return this.http.post<Incident>(this.apiUrl + '/api/news', data);
   }
- 
-    getGuardShift(id: number): Observable<Shift[]>{
-    return this.http.get<Shift[]>(this.apiUrl + '/shifts/guardShifts/'+ id);
+
+  getGuardShift(id: number): Observable<Shift[]> {
+    return this.http.get<Shift[]>(this.apiUrl + '/shifts/guardShifts/' + id);
   }
-  
- 
+
+
   //addIncident(): 
-/*  getAllActivities(course_id: string, unit_number: string, lesson_number: string): Observable<Activity[]> {
-    return this.http.get<Activity[]>(`${this.apiUrl}/course/${course_id}/unit/${unit_number}/lesson/${lesson_number}/activities`);
-  } */
-  
- /* /shifts​/guardShifts​/{id}
-  getTestByCourseId(course_id: string, unit_number: string, lesson_number: string): Observable<Test> {
-    return this.http.get<Test>(`${this.apiUrl}/course/${course_id}/unit/${unit_number}/lesson/${lesson_number}/test`);
-  } */
-  
-  
-  
+  /*  getAllActivities(course_id: string, unit_number: string, lesson_number: string): Observable<Activity[]> {
+      return this.http.get<Activity[]>(`${this.apiUrl}/course/${course_id}/unit/${unit_number}/lesson/${lesson_number}/activities`);
+    } */
+
+  /* /shifts​/guardShifts​/{id}
+   getTestByCourseId(course_id: string, unit_number: string, lesson_number: string): Observable<Test> {
+     return this.http.get<Test>(`${this.apiUrl}/course/${course_id}/unit/${unit_number}/lesson/${lesson_number}/test`);
+   } */
+
+
+
 }

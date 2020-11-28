@@ -10,11 +10,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiService } from './providers/api.service';
 import { AuthService } from './providers/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Toast } from '@ionic-native/toast/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx'
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -27,6 +28,11 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx'
     SplashScreen,
     LocalNotifications,
     Toast,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi:true,
+    },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy ,}
   ],
   bootstrap: [AppComponent]

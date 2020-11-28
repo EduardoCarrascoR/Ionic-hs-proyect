@@ -10,6 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler): Observable<HttpEvent<any>> {
 
       const guard: Guard = JSON.parse(localStorage.getItem("guard"))
+      console.table(guard)
       
       if (guard) {
       const authJwtToken = guard.accessToken;

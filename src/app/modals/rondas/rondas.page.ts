@@ -15,6 +15,7 @@ import { AuthService } from 'src/app/providers/auth.service';
 })
 export class RondasPage implements OnInit {
   shifts$: Observable<Shift[]>
+  shifts: Shift[]
   guard: Guard
   constructor(
     private modalController: ModalController,
@@ -30,6 +31,11 @@ export class RondasPage implements OnInit {
       resolve()
     }).then(() => {
       this.shifts$ = this.api.getGuardShift(this.guard.id)
+      this.api.getGuardShift(this.guard.id).toPromise()
+        .then((data: any) => {
+          this.shifts = data.shifts;
+          console.table(this.shifts)
+        })
     })
   }
   
@@ -37,8 +43,11 @@ export class RondasPage implements OnInit {
   async closeModal(){
     await this.modalController.dismiss();
   }
-  openUrl (){
-    this.browser.create('https://www.google.cl/maps/place/'+'Bellavista+52+Providencia','_self')
+
+
+  openUrl (place: string){
+    place = place.replace(/ /g, '+')
+    this.browser.create('https://www.google.cl/maps/place/'+ place,'_self')
   }
   
 }
