@@ -4,7 +4,7 @@ import { Guard } from '../models/guard.interface';
 import { Toast } from '@ionic-native/toast/ngx';
 import { Router } from '@angular/router';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
-import { decode } from 'querystring';
+
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +44,10 @@ export class AuthService {
       console.error(error)    
       })
   }
+
+  guardData(){
+    return JSON.parse(localStorage.getItem('guard'))
+  }
+
 }
 

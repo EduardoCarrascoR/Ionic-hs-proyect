@@ -1,10 +1,12 @@
 export interface Shift {
-    shift_id: string;
+    shiftId: string;
     type?: string;
     start: string;
+    trueStartShift?: string;
     finish: string;
     date: string;
-    client_id?: string;
-    guard_id?:string[];
-    shift_place?:string;
+    state: string;
+    client?: string;
+    guards?:string[];
+    shiftPlace?:string;
   }

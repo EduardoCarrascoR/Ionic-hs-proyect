@@ -1,6 +1,6 @@
 export interface Guard {
 
-  user_id?: number;
+  id?: number;
   firstname: string;
   lastname: string;
   email?: string;
