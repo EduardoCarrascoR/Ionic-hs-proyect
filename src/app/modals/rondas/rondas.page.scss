@@ -3,3 +3,7 @@
 //javascript para reemplazar el espacio por un +
 //var str = 'a b c';
 //var replaced = str.split(' ').join('+');
+
+.map {
+  width: -webkit-fill-available;
+}
