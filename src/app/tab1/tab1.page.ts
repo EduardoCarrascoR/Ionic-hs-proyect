@@ -20,7 +20,6 @@ export class Tab1Page implements OnInit{
     private modalController: ModalController
   ) {}
 ngOnInit (){
- this.shifts$ = this.api.getGuardShift()
 }
 async openModal() {
   const modal = await this.modalController.create({
