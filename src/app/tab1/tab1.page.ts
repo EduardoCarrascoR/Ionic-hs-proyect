@@ -24,9 +24,10 @@ export class Tab1Page implements OnInit {
   ) {}
 ngOnInit (){
 }
-async openModal() {
+async openModal(shift) {
   const modal = await this.modalController.create({
-    component: RondasPage
+    component: RondasPage,
+    componentProps: shift
   });
   return await modal.present();
 }

@@ -28,7 +28,7 @@ export class ApiService {
   }
 
   register(data: Incident): Observable<Incident> {
-    return this.http.post<Incident>(this.apiUrl + '/api/news', data);
+    return this.http.post<Incident>(this.apiUrl + '/news', data);
   }
 
   getGuardShift(id: number): Observable<Shift[]> {

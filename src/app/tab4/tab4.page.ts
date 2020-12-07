@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications/ngx';
 import { Platform, AlertController } from '@ionic/angular'
 import { ApiService } from '../providers/api.service';
+import { Guard } from '../models/guard.interface';
+import { Shift } from '../models/shift.interface';
+import { Observable } from 'rxjs';
+import { AuthService } from '../providers/auth.service';
+import { Incident } from '../models/incident.interface';
 
 
 @Component({
@@ -12,10 +17,31 @@ import { ApiService } from '../providers/api.service';
 })
 export class Tab4Page {
   registerForm: FormGroup
+  shifts$: Observable<Shift[]>
+  shifts: Shift[]
+  guard: Guard
+  incident: Incident[]
 
-  constructor(public formBuilder: FormBuilder, private api: ApiService,
-    private plt: Platform, private localNotifications: LocalNotifications,
+  constructor(
+    public formBuilder: FormBuilder,
+    private api: ApiService,
+    private plt: Platform,
+    private localNotifications: LocalNotifications,
+    private auth: AuthService,
     private alertCtrl: AlertController) {
+
+      new Promise((resolve, reject) => {
+        this.guard = this.auth.guardData()
+        console.table(this.guard)
+        resolve()
+      }).then(() => {
+        this.shifts$ = this.api.getGuardShift(this.guard.id)
+        this.api.getGuardShift(this.guard.id).toPromise()
+          .then((data: any) => {
+            this.shifts = data.shifts;
+            console.table(this.shifts)
+          })
+      })
 
     this.plt.ready().then(() => {
       this.localNotifications.on('click').subscribe(res => {
@@ -30,12 +56,14 @@ export class Tab4Page {
       });
 
     });
+    this.registerForm = this.createRegisterForm();
   }
 
   createRegisterForm() {
     return this.formBuilder.group({
-      incident: ['', Validators.required],
-      other: ['', Validators.required]
+      title: new FormControl ('', Validators.required),
+      description: new FormControl ('', Validators.required),
+      shiftId: ['', Validators.required]
     })
   }
 
@@ -63,9 +91,29 @@ export class Tab4Page {
 
   register() {
     this.api.register(this.registerForm.value).toPromise().catch(error => { console.log(error) })
+
   }
 
   ngOninit() {
-    this.registerForm = this.createRegisterForm()
+    /* new Promise((resolve, reject) => {
+      this.guard = this.auth.guardData()
+      console.table(this.guard)
+      resolve()
+    }).then(() => {
+      this.shifts$ = this.api.getGuardShift(this.guard.id)
+      this.api.getGuardShift(this.guard.id).toPromise()
+        .then((data: any) => {
+          this.shifts = data.shifts;
+          console.table(this.shifts)
+        })
+    }) */
+
+    /* this.registerForm = this.createRegisterForm() */
+
+    /* this.registerForm = this.formBuilder.group({
+      incident: new FormControl('', Validators.required),
+      other: new FormControl('', Validators.required)
+    }); */
+
   }
 }

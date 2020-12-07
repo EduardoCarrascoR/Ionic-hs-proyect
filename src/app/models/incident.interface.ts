@@ -1,6 +1,6 @@
 export interface Incident {
 
-    incident: string;
-    other?: string;
-
+    title?: string;
+    description?: string;
+    shiftId?: number;
 }

@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { ApiService } from './providers/api.service';
 import { AuthService } from './providers/auth.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Toast } from '@ionic-native/toast/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx'
@@ -19,7 +19,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule,ReactiveFormsModule, AppRoutingModule],
+  imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule,ReactiveFormsModule,FormsModule,AppRoutingModule],
   providers: [
     StatusBar,
     ApiService,
