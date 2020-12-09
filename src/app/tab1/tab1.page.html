@@ -15,6 +15,21 @@
   <br><br>
     <ion-button size="large" expand="block" (click)="openModal()" color="medium">ver rondas de la semana</ion-button>
   <br><br>
-  <br>
-  
+  <br><br>
+
+  <ion-item color="medium" >
+    <ion-label>
+      Elegir turno a iniciar:
+    </ion-label>
+    <ion-select value="brown" okText="Okay" cancelText="Dismiss" class="ion-text-wrap" (ionChange)='saveId()' [(ngModel)]='shiftId'>
+
+      <ion-select-option class="ion-text-wrap" [value]="shift.shiftId" *ngFor="let shift of shifts" >
+        {{shift.date}}
+      </ion-select-option>
+    </ion-select>
+
+  </ion-item>
+  <br><br>
+
+  <ion-button (click)='notification()' shape="round" size="large">Registrar nuevo Incidente</ion-button>
 </ion-content>

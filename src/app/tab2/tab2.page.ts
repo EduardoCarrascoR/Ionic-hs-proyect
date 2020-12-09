@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ModalController } from '@ionic/angular';
 import { SecondPage } from '../modals/second/second.page';
+import { ApiService } from '../providers/api.service';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 
 
@@ -11,43 +13,22 @@ import { SecondPage } from '../modals/second/second.page';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-
-  private visitas = [{
-    id: 1,
-    title: 'Eduardo Carra',
-    Rut: '8.888.888-2',
-    Patente: 'GKSB78',
-  },
-  {
-    id: 2,
-    title: 'Eduardo Muñoz',
-    Rut: '7.777.777-2',
-    Patente: 'GKSB78',
-  },
-  {
-    id: 3,
-    title: 'Eduardo Cabrera',
-    Rut: '5.555.555-2',
-    Patente: 'GKSB78',
-
-  },
-  {
-    id: 4,
-    title: 'Eduardo Aguilar',
-    Rut: '6.676.676-2',
-    Patente: 'GKSB78',
-
-  },
-  {
-    id: 5,
-    title: 'Eduardo Muñoz',
-    Rut: '7.777.777-2',
-    Patente: 'GKSB78',
-  }]
+  
+  private visitas = []
   
   constructor(
-    private modalController: ModalController
-  ) { }
+   
+    private modalController: ModalController,
+    private api: ApiService
+  ) { 
+    this.api.getVisitors().toPromise()
+      .then((data:any)=>{
+        this.visitas=data.visitors
+        console.log(data)
+      })
+
+      
+  }
 
   async openModal() {
     const modal = await this.modalController.create({
@@ -56,4 +37,10 @@ export class Tab2Page {
     return await modal.present();
   }
 
+  
+
+  ngOninit(){
+  }
+
 }
+

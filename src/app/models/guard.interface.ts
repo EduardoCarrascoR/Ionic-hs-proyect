@@ -11,5 +11,5 @@ export interface Guard {
   accessToken?: string;
   emailVerified?: string;
   password?: string;
-
+  shiftId?: number;
 }

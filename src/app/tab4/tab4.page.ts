@@ -8,6 +8,7 @@ import { Shift } from '../models/shift.interface';
 import { Observable } from 'rxjs';
 import { AuthService } from '../providers/auth.service';
 import { Incident } from '../models/incident.interface';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -28,8 +29,10 @@ export class Tab4Page {
     private plt: Platform,
     private localNotifications: LocalNotifications,
     private auth: AuthService,
-    private alertCtrl: AlertController) {
-
+    private alertCtrl: AlertController,
+    private router: Router
+    ) {
+    
       new Promise((resolve, reject) => {
         this.guard = this.auth.guardData()
         console.table(this.guard)
@@ -43,19 +46,7 @@ export class Tab4Page {
           })
       })
 
-    this.plt.ready().then(() => {
-      this.localNotifications.on('click').subscribe(res => {
-        console.log('click', res);
-        let msg = res.data ? res.data.mysata : '';
-        this.showAlert(res.title, res.text, msg);
-      });
-      this.localNotifications.on('trigger').subscribe(res => {
-        console.log('trigger', res);
-        let msg = res.data ? res.data.mysata : '';
-        this.showAlert(res.title, res.text, msg);
-      });
-
-    });
+      
     this.registerForm = this.createRegisterForm();
   }
 
@@ -63,35 +54,17 @@ export class Tab4Page {
     return this.formBuilder.group({
       title: new FormControl ('', Validators.required),
       description: new FormControl ('', Validators.required),
-      shiftId: ['', Validators.required]
+      shiftId: [this.guard.shiftId, Validators.required]
     })
   }
 
-  Notification() {
-    this.localNotifications.schedule({
-      id: 10,
-      title: 'Recordatorio de ronda',
-      text: 'Recuerde registrar si ha ocurrido algún incidente',
-      data: { mysata: 'mensaje oculto de la notificacion' },
-      trigger: { in: 30, unit: ELocalNotificationTriggerUnit.MINUTE },
-      foreground: true,
-
-    })
-  }
-
-  showAlert(header, sub, msg) {
-    this.alertCtrl.create({
-      header: header,
-      subHeader: sub,
-      message: msg,
-      buttons: ['OK']
-    }).then(alert => alert.present());
-  }
 
 
   register() {
-    this.api.register(this.registerForm.value).toPromise().catch(error => { console.log(error) })
-
+    this.api.register(this.registerForm.value).toPromise().then(()=>{
+      this.router.navigate(['tabs/tab1'])
+    }).catch(error => { console.log(error) })
+    
   }
 
   ngOninit() {

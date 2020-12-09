@@ -55,22 +55,22 @@
   <!-- <ion-form [formGroup]="registerForm" (ngSubmit)="register()"> -->
     <form class="valign-wrapper4" [formGroup]="registerForm" (ngSubmit)="register()">
 
-      <ion-item color="medium" >
+      <!-- <ion-item color="medium" >
         <ion-label>
           Elegir turno a iniciar:
         </ion-label>
-        <!-- <ion-select value="brown" okText="Okay" cancelText="Dismiss" *ngFor="let shift of shifts$ | async" -->
+        <ion-select value="brown" okText="Okay" cancelText="Dismiss" *ngFor="let shift of shifts$ | async"
         <ion-select value="brown" okText="Okay" cancelText="Dismiss" class="ion-text-wrap" formControlName="shiftId">
-         <!-- [(ngModel)]="shifts$"> -->
+         [(ngModel)]="shifts$">
           <ion-select-option class="ion-text-wrap" [value]="shift.shiftId" *ngFor="let shift of shifts" >
             {{shift.date}}
           </ion-select-option>
-          <!-- <ion-select-option hidden>
+          <ion-select-option hidden>
             {{shift.date}}
           {{shift.dates+' '+shift.start+' '+shift.finish}}
-        </ion-select-option> -->
+        </ion-select-option>
         </ion-select>
-      </ion-item>
+      </ion-item> -->
       <br><br>
     <ion-list >
       
