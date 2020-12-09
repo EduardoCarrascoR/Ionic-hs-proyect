@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { ApiService } from './api.service';
 import { Guard } from '../models/guard.interface';
 import { Toast } from '@ionic-native/toast/ngx';
 import { Router } from '@angular/router';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
+import { NavController } from '@ionic/angular';
 
 
 @Injectable({
@@ -15,6 +16,8 @@ export class AuthService {
   constructor(
     private api: ApiService,
     private router: Router,
+    public ngZone: NgZone,
+    private navController: NavController,
     private toast: Toast
   ) {
 
@@ -43,6 +46,21 @@ export class AuthService {
           }) */
       console.error(error)    
       })
+  }
+  logout(){
+    localStorage.removeItem('guard');
+    this.ngZone.run(() => {
+      this.navController.navigateRoot(['/login'])
+    });
+  }
+
+  isLogged() {
+    if (localStorage.getItem("guard") == null) {
+      return false;
+    }
+    else {
+      return true;
+    }
   }
 
   guardData(){
