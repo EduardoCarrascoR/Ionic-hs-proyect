@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Guard } from 'src/app/models/guard.interface';
+import { AuthService } from 'src/app/providers/auth.service';
+import { ApiService } from 'src/app/providers/api.service';
+import { Shift } from 'src/app/models/shift.interface';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,13 +15,30 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
   styleUrls: ['./second.page.scss'],
 })
 export class SecondPage implements OnInit {
-
+  guard: Guard
   registerVisitorForm: FormGroup
-
+  shifts$: Observable<Shift[]>
+  shifts: Shift[]
   constructor(
     private modalController: ModalController,
     public formBuilder: FormBuilder,
+    private auth: AuthService,
+    private api: ApiService,
+    private router: Router
     ) { 
+      new Promise((resolve, reject) => {
+        this.guard = this.auth.guardData()
+        console.table(this.guard)
+        resolve()
+      }).then(() => {
+        this.shifts$ = this.api.getGuardShift(this.guard.id)
+        this.api.getGuardShift(this.guard.id).toPromise()
+          .then((data: any) => {
+            this.shifts = data.shifts;
+            console.table(this.shifts)
+          })
+      })
+
       this.registerVisitorForm = this.createRegisterVisitorForm();
     }
 
@@ -23,11 +46,18 @@ export class SecondPage implements OnInit {
   }
   createRegisterVisitorForm(){
     return this.formBuilder.group({
-      firstname: new FormControl ('', Validators.required),
-      lastname: new FormControl ('', Validators.required),
+      name: new FormControl ('', Validators.required),
       rut: new FormControl ('', Validators.required),
-      patente: new FormControl ('', Validators.required),           
+      patent: new FormControl ('', Validators.required),  
+      shiftId:[this.guard.shiftId, Validators.required]         
     })
+  }
+
+  registerVisitor() {
+    this.api.registerVisitor(this.registerVisitorForm.value).toPromise().then(()=>{
+      this.router.navigate(['tabs/tab2'])
+    }).catch(error => { console.log(error) })
+    
   }
   async closeModal(){
     await this.modalController.dismiss();

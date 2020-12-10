@@ -35,56 +35,56 @@ export class ApiService {
   getGuardShift(id: number): Observable<Shift[]> {
     return this.http.get<Shift[]>(this.apiUrl + '/shifts/guardShifts/' + id);
   }
-  
-  registerVisitor(data:Visitor): Observable<Visitor>{
-    return this.http.post<Visitor>(this.apiUrl + '/visitors', data);
+
+  registerVisitor(data: Visitor): Observable<Visitor> {
+    return this.http.post<Visitor>(this.apiUrl + '/visits', data);
   }
 
-  getVisitors() {
-    console.log('hola')
+  getVisitors(id: number): Observable<Visitor[]> {
+    return this.http.get<Visitor[]>(this.apiUrl + '/visits/allVisit/'+ id);
     /* return this.http.get<Visitors[]>(this.apiUrl + '/visitors'); */
-    return of ({
-      success: true,
-      menssage: 'funciona',
-      visitors: [
-        { id: 1,
-          firstname: 'Eduardo ',         
-          lastname:'Carra',
-          Rut: '8.888.888-2',
-          Patente: 'GKSB78',
-        },
-        {
-          id: 2,
-          firstname: 'Eduardo ',
-          lastname:'Muñoz',
-          Rut: '7.777.777-2',
-          Patente: 'GKSB78',
-        },
-        {
-          id: 3,
-          firstname: 'Eduardo ',
-          lastname:'Cabrera',
-          Rut: '5.555.555-2',
-          Patente: 'GKSB78',
-      
-        },
-        {
-          id: 4,
-          firstname: 'Eduardo ',
-          lastname:'Aguilar',
-          Rut: '6.676.676-2',
-          Patente: 'GKSB78',
-      
-        },
-        {
-          id: 5,
-          firstname: 'Eduardo ',
-          lastname:'Muñoz',
-          Rut: '7.777.777-2',
-          Patente: 'GKSB78',
-        }
-      ]
-    })
+    /*  return of ({
+       success: true,
+       menssage: 'funciona',
+       visitors: [
+         { id: 1,
+           firstname: 'Eduardo ',         
+           lastname:'Carra',
+           Rut: '8.888.888-2',
+           Patente: 'GKSB78',
+         },
+         {
+           id: 2,
+           firstname: 'Eduardo ',
+           lastname:'Muñoz',
+           Rut: '7.777.777-2',
+           Patente: 'GKSB78',
+         },
+         {
+           id: 3,
+           firstname: 'Eduardo ',
+           lastname:'Cabrera',
+           Rut: '5.555.555-2',
+           Patente: 'GKSB78',
+       
+         },
+         {
+           id: 4,
+           firstname: 'Eduardo ',
+           lastname:'Aguilar',
+           Rut: '6.676.676-2',
+           Patente: 'GKSB78',
+       
+         },
+         {
+           id: 5,
+           firstname: 'Eduardo ',
+           lastname:'Muñoz',
+           Rut: '7.777.777-2',
+           Patente: 'GKSB78',
+         }
+       ]
+     }) */
   }
 
   //addIncident(): 
