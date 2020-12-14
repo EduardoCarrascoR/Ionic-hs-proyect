@@ -44,7 +44,7 @@ export class Tab2Page {
       .then((data: any) => {
         this.visitas = data.visits;
         console.table(this.visitas)
-
+        
       })
 
 

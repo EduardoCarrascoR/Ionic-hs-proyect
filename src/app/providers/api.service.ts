@@ -5,6 +5,7 @@ import { Guard } from '../models/guard.interface';
 import { Incident } from '../models/incident.interface';
 import { Shift } from '../models/shift.interface';
 import { Visitor } from '../models/visitor.interface';
+import { Report } from '../models/report.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class ApiService {
   constructor(
     private http: HttpClient
   ) {
-
+    
   }
 
   login(rut: string, password: string): Observable<Guard> {
@@ -41,62 +42,21 @@ export class ApiService {
   }
 
   getVisitors(id: number): Observable<Visitor[]> {
-    return this.http.get<Visitor[]>(this.apiUrl + '/visits/allVisit/'+ id);
-    /* return this.http.get<Visitors[]>(this.apiUrl + '/visitors'); */
-    /*  return of ({
-       success: true,
-       menssage: 'funciona',
-       visitors: [
-         { id: 1,
-           firstname: 'Eduardo ',         
-           lastname:'Carra',
-           Rut: '8.888.888-2',
-           Patente: 'GKSB78',
-         },
-         {
-           id: 2,
-           firstname: 'Eduardo ',
-           lastname:'Muñoz',
-           Rut: '7.777.777-2',
-           Patente: 'GKSB78',
-         },
-         {
-           id: 3,
-           firstname: 'Eduardo ',
-           lastname:'Cabrera',
-           Rut: '5.555.555-2',
-           Patente: 'GKSB78',
-       
-         },
-         {
-           id: 4,
-           firstname: 'Eduardo ',
-           lastname:'Aguilar',
-           Rut: '6.676.676-2',
-           Patente: 'GKSB78',
-       
-         },
-         {
-           id: 5,
-           firstname: 'Eduardo ',
-           lastname:'Muñoz',
-           Rut: '7.777.777-2',
-           Patente: 'GKSB78',
-         }
-       ]
-     }) */
+    return this.http.get<Visitor[]>(this.apiUrl + '/visits/allVisit/' + id);
   }
 
-  //addIncident(): 
-  /*  getAllActivities(course_id: string, unit_number: string, lesson_number: string): Observable<Activity[]> {
-      return this.http.get<Activity[]>(`${this.apiUrl}/course/${course_id}/unit/${unit_number}/lesson/${lesson_number}/activities`);
-    } */
+  initShift(id: number, idclient: number): Observable<Shift> {
+    return this.http.put<Shift>(this.apiUrl + '/shifts/init/', {id, idclient});
+  }
 
-  /* /shifts​/guardShifts​/{id}
-   getTestByCourseId(course_id: string, unit_number: string, lesson_number: string): Observable<Test> {
-     return this.http.get<Test>(`${this.apiUrl}/course/${course_id}/unit/${unit_number}/lesson/${lesson_number}/test`);
-   } */
-
-
+  /* report(data: Report): Observable<Report> {
+    console.log(data)
+    return this.http.post<Report>(this.apiUrl + '/reports', data);
+  } */
+  report(dataReport: Report): Observable<Report> {
+    /* console.log(dataReport) */
+    return this.http.post<Report>(this.apiUrl + '/reports', dataReport);
+    
+  }
 
 }

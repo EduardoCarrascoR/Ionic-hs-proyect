@@ -9,6 +9,7 @@ import { Guard } from '../models/guard.interface';
 import { AuthService } from '../providers/auth.service';
 import { ELocalNotificationTriggerUnit, LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Router } from '@angular/router';
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-tab1',
@@ -19,6 +20,8 @@ export class Tab1Page implements OnInit {
   shifts$: Observable<Shift[]>
   guard: Guard
   shifts: Shift[]
+  shift: Shift
+  
   shiftId 
   constructor(
     private api: ApiService,
@@ -32,7 +35,7 @@ export class Tab1Page implements OnInit {
   ) {
     new Promise((resolve, reject) => {
       this.guard = this.auth.guardData()
-      console.table(this.guard)
+     /*  console.table(this.guard) */
       resolve()
     }).then(() => {
       this.shifts$ = this.api.getGuardShift(this.guard.id)
@@ -68,9 +71,17 @@ async openModal(shift) {
 }
 
 saveId(){
-  this.guard.shiftId = this.shiftId
+  console.log(this.shiftId)
+  
+  this.guard.shiftId = parseInt(this.shiftId.split('$')[0])
+  this.guard.client = parseInt(this.shiftId.split('$')[1])
+ /*  this.shift. = client.toString() */
   localStorage.setItem('guard',JSON.stringify(this.guard))
+
+
+  console.table(this.guard)
 }
+
 
   openUrl() {
     this.browser.create('https://www.google.cl/maps/', '_self')

@@ -6,7 +6,7 @@ export interface Shift {
     finish: string;
     date: string;
     state: string;
-    client?: string;
+    client?: number;
     guards?:string[];
     shiftPlace?:string;
   }

@@ -7,23 +7,38 @@
 </ion-header>
 
 <ion-content padding class="valign-wrapper2">
+  <ion-fab size="large" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="dark">
+      <ion-icon name="log-out"></ion-icon>
+      off
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab size="large" vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button color="dark">
+      <ion-icon name="stopwatch"></ion-icon>
+      on
+    </ion-fab-button>
+  </ion-fab>
   <br><br>
+
   <ion-item class="wrapper2">
     <ion-img src="\assets\imgs\logo.png"></ion-img>
   </ion-item>
   <br><br>
   <br><br>
-    <ion-button size="large" expand="block" (click)="openModal()" color="medium">ver rondas de la semana</ion-button>
+  <ion-button size="large" expand="block" (click)="openModal()" color="medium">ver rondas de la semana</ion-button>
   <br><br>
   <br><br>
 
-  <ion-item color="medium" >
+  <ion-item color="medium">
     <ion-label>
       Elegir turno a iniciar:
     </ion-label>
-    <ion-select value="brown" okText="Okay" cancelText="Dismiss" class="ion-text-wrap" (ionChange)='saveId()' [(ngModel)]='shiftId'>
+    <ion-select value="brown" okText="Okay" cancelText="Dismiss" class="ion-text-wrap" (ionChange)='saveId()'
+      [(ngModel)]='shiftId'>
 
-      <ion-select-option class="ion-text-wrap" [value]="shift.shiftId" *ngFor="let shift of shifts" >
+      <ion-select-option class="ion-text-wrap" [value]="shift.shiftId + '$' +shift.client" *ngFor="let shift of shifts">
         {{shift.date}}
       </ion-select-option>
     </ion-select>
@@ -31,5 +46,5 @@
   </ion-item>
   <br><br>
 
-  <ion-button (click)='notification()' shape="round" size="large">Registrar nuevo Incidente</ion-button>
+  <ion-button (click)='notification()' shape="round" size="large" expand="block">Registrar nuevo Incidente</ion-button>
 </ion-content>

@@ -12,4 +12,5 @@ export interface Guard {
   emailVerified?: string;
   password?: string;
   shiftId?: number;
+  client?: number;
 }
