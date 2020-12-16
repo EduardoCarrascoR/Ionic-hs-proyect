@@ -25,41 +25,41 @@ export class SecondPage implements OnInit {
     private auth: AuthService,
     private api: ApiService,
     private router: Router
-    ) { 
-      new Promise((resolve, reject) => {
-        this.guard = this.auth.guardData()
-        console.table(this.guard)
-        resolve()
-      }).then(() => {
-        this.shifts$ = this.api.getGuardShift(this.guard.id)
-        this.api.getGuardShift(this.guard.id).toPromise()
-          .then((data: any) => {
-            this.shifts = data.shifts;
-            console.table(this.shifts)
-          })
-      })
+  ) {
+    new Promise((resolve, reject) => {
+      this.guard = this.auth.guardData()
+     /*  console.table(this.guard) */
+      resolve()
+    }).then(() => {
+      this.shifts$ = this.api.getGuardShift(this.guard.id)
+      this.api.getGuardShift(this.guard.id).toPromise()
+        .then((data: any) => {
+          this.shifts = data.shifts;
+         /*  console.table(this.shifts) */
+        })
+    })
 
-      this.registerVisitorForm = this.createRegisterVisitorForm();
-    }
+    this.registerVisitorForm = this.createRegisterVisitorForm();
+  }
 
   ngOnInit() {
   }
-  createRegisterVisitorForm(){
+  createRegisterVisitorForm() {
     return this.formBuilder.group({
-      name: new FormControl ('', Validators.required),
-      rut: new FormControl ('', Validators.required),
-      patent: new FormControl ('', Validators.required),  
-      shiftId:[this.guard.shiftId, Validators.required]         
+      name: new FormControl('', Validators.required),
+      rut: new FormControl('', Validators.required),
+      patent: new FormControl('', Validators.required),
+      shiftId: [this.guard.shiftId, Validators.required]
     })
   }
 
   registerVisitor() {
-    this.api.registerVisitor(this.registerVisitorForm.value).toPromise().then(()=>{
+    this.api.registerVisitor(this.registerVisitorForm.value).toPromise().then(() => {
       this.router.navigate(['tabs/tab2'])
     }).catch(error => { console.log(error) })
-    
+
   }
-  async closeModal(){
+  async closeModal() {
     await this.modalController.dismiss();
   }
 }

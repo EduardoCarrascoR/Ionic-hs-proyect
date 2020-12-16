@@ -43,7 +43,7 @@ export class Tab2Page {
     this.api.getVisitors(this.guard.shiftId).toPromise()
       .then((data: any) => {
         this.visitas = data.visits;
-        console.table(this.visitas)
+        /* console.table(this.visitas) */
         
       })
 

@@ -27,14 +27,14 @@ export class RondasPage implements OnInit {
   ngOnInit() {
     new Promise ((resolve, reject) => {
       this.guard = this.auth.guardData()
-      console.table(this.guard)
+    /*   console.table(this.guard) */
       resolve()
     }).then(() => {
       this.shifts$ = this.api.getGuardShift(this.guard.id)
       this.api.getGuardShift(this.guard.id).toPromise()
         .then((data: any) => {
           this.shifts = data.shifts;
-          console.table(this.shifts)
+        /*   console.table(this.shifts) */
         })
     })
   }

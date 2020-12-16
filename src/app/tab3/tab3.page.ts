@@ -53,31 +53,31 @@ export class Tab3Page {
       case 'Ambulance':
         this.api.report({ type: data, clientId: this.guard.client, shiftId: this.guard.shiftId }).toPromise()
           .then((data:any)=>{
-            console.log(data)
+          /*   console.log(data) */
           })
         break;
       case 'Police':
         this.api.report({ type: data, clientId: this.guard.client, shiftId: this.guard.shiftId }).toPromise()
         .then((data:any)=>{
-          console.log(data)
+          /* console.log(data) */
         })
         break;
       case 'Firefighter':
         this.api.report({ type: data, clientId: this.guard.client, shiftId: this.guard.shiftId }).toPromise()
         .then((data:any)=>{
-          console.log(data)
+          /* console.log(data) */
         })
         break;
       case 'Office1':
         this.api.report({ type: data, clientId: this.guard.client, shiftId: this.guard.shiftId }).toPromise()
         .then((data:any)=>{
-          console.log(data)
+          /* console.log(data) */
         })
         break;
       case 'Office2':
         this.api.report({ type: data, clientId: this.guard.client, shiftId: this.guard.shiftId }).toPromise()
         .then((data:any)=>{
-          console.log(data)
+          /* console.log(data) */
         })
         break;
 

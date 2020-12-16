@@ -8,28 +8,28 @@
 
 <ion-content padding class="valign-wrapper2">
   <ion-fab size="large" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="dark">
+    <ion-fab-button color="dark" (click)='finalShift()'>
       <ion-icon name="log-out"></ion-icon>
-      off
+      finish
     </ion-fab-button>
   </ion-fab>
 
   <ion-fab size="large" vertical="bottom" horizontal="start" slot="fixed">
-    <ion-fab-button color="dark">
+    <ion-fab-button color="dark" (click)='initShift()'>
       <ion-icon name="stopwatch"></ion-icon>
-      on
+      start
     </ion-fab-button>
   </ion-fab>
-  <br><br>
+  <br>
 
   <ion-item class="wrapper2">
     <ion-img src="\assets\imgs\logo.png"></ion-img>
   </ion-item>
   <br><br>
-  <br><br>
+  
   <ion-button size="large" expand="block" (click)="openModal()" color="medium">ver rondas de la semana</ion-button>
   <br><br>
-  <br><br>
+  
 
   <ion-item color="medium">
     <ion-label>
@@ -47,4 +47,5 @@
   <br><br>
 
   <ion-button (click)='notification()' shape="round" size="large" expand="block">Registrar nuevo Incidente</ion-button>
+  <br><br>
 </ion-content>

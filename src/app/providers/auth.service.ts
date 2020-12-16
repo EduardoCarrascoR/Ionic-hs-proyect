@@ -26,12 +26,12 @@ export class AuthService {
     this.api.login(userdata.rut, userdata.password).toPromise()
       .then((res: any) => {
         if (res.success) {
-          console.table(res.data)
+        /*   console.table(res.data) */
           
           const token: string = res.data.accessToken;
           
           const decoded = jwtDecode<JwtPayload>(token);
-          console.log('algo text', decoded);
+         /*  console.log('algo text', decoded); */
           res.data['id'] = decoded.sub
           localStorage.setItem('guard', JSON.stringify(res.data))
           this.router.navigate(['/tabs/tab1'])

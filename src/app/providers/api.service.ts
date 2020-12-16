@@ -6,6 +6,7 @@ import { Incident } from '../models/incident.interface';
 import { Shift } from '../models/shift.interface';
 import { Visitor } from '../models/visitor.interface';
 import { Report } from '../models/report.interface';
+import { initShift } from '../models/initShift.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class ApiService {
   constructor(
     private http: HttpClient
   ) {
-    
+
   }
 
   login(rut: string, password: string): Observable<Guard> {
@@ -45,10 +46,18 @@ export class ApiService {
     return this.http.get<Visitor[]>(this.apiUrl + '/visits/allVisit/' + id);
   }
 
-  initShift(id: number, idclient: number): Observable<Shift> {
-    return this.http.put<Shift>(this.apiUrl + '/shifts/init/', {id, idclient});
+  /*   initShift(id: number, idclient: number, idguard: number): Observable<Shift> {
+      return this.http.put<Shift>(this.apiUrl + '/shifts/init/', {id, idclient, idguard});
+    } */
+  /* /api/shifts/init/{id}/{idClient} 
+  body: idGuard*/
+  initShift(id: number, idClient: number, idGuard: number): Observable<initShift> {
+    return this.http.put<initShift>(this.apiUrl + '/shifts/init/' + id + '/' + idClient, {idGuard});
   }
 
+  finalShift(id: number, idClient: number, idGuard: number): Observable<initShift> {
+    return this.http.put<initShift>(this.apiUrl + '/shifts/final/' + id + '/' + idClient, {idGuard});
+  }
   /* report(data: Report): Observable<Report> {
     console.log(data)
     return this.http.post<Report>(this.apiUrl + '/reports', data);
@@ -56,7 +65,7 @@ export class ApiService {
   report(dataReport: Report): Observable<Report> {
     /* console.log(dataReport) */
     return this.http.post<Report>(this.apiUrl + '/reports', dataReport);
-    
+
   }
 
 }
