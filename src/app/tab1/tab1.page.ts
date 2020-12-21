@@ -7,7 +7,7 @@ import { ModalController, AlertController, Platform, ToastController } from '@io
 import { RondasPage } from '../modals/rondas/rondas.page';
 import { Guard } from '../models/guard.interface';
 import { AuthService } from '../providers/auth.service';
-import { ELocalNotificationTriggerUnit, LocalNotifications } from '@ionic-native/local-notifications/ngx';
+/* import { ELocalNotificationTriggerUnit, LocalNotifications } from '@ionic-native/local-notifications/ngx'; */
 import { Router } from '@angular/router';
 import { $ } from 'protractor';
 
@@ -27,7 +27,7 @@ export class Tab1Page implements OnInit {
     public toastController: ToastController,
     private api: ApiService,
     private browser: InAppBrowser,
-    private localNotifications: LocalNotifications,
+   /*  private localNotifications: LocalNotifications, */
     private auth: AuthService,
     private plt: Platform,
     private modalController: ModalController,
@@ -47,19 +47,19 @@ export class Tab1Page implements OnInit {
         })
     })
 
-    this.plt.ready().then(() => {
+   /*  this.plt.ready().then(() => {
       this.localNotifications.on('click').subscribe(res => {
-        /*  console.log('click', res); */
+         console.log('click', res);
         let msg = res.data ? res.data.mysata : '';
         this.showAlert(res.title, res.text, msg);
       });
       this.localNotifications.on('trigger').subscribe(res => {
-        /* console.log('trigger', res); */
+        console.log('trigger', res);
         let msg = res.data ? res.data.mysata : '';
         this.showAlert(res.title, res.text, msg);
-      });
+      }); */
 
-    });
+    /* }); */
   }
 
   async presentToast(message: string) {
@@ -101,16 +101,16 @@ export class Tab1Page implements OnInit {
         this.presentToast('La ronda ya se encuentra iniciada.')
       })
 
-    await this.localNotifications.schedule({
+   /*  await this.localNotifications.schedule({
       id: 10,
       title: 'Recordatorio de ronda',
       text: 'Recuerde registrar si ha ocurrido algún incidente',
       data: { mysata: 'mensaje oculto de la notificacion' },
-      /*    trigger: { in: 60, unit: ELocalNotificationTriggerUnit.MINUTE }, */
+         trigger: { in: 60, unit: ELocalNotificationTriggerUnit.MINUTE },
       trigger: { in: 10, unit: ELocalNotificationTriggerUnit.SECOND },
       foreground: true,
 
-    })
+    }) */
   }
 
   finalShift() {
@@ -127,16 +127,16 @@ export class Tab1Page implements OnInit {
 
 
   async notification() {
-    await this.localNotifications.schedule({
+    /* await this.localNotifications.schedule({
       id: 10,
       title: 'Recordatorio de ronda',
       text: 'Recuerde registrar si ha ocurrido algún incidente',
       data: { mysata: 'mensaje oculto de la notificacion' },
-      /*    trigger: { in: 60, unit: ELocalNotificationTriggerUnit.MINUTE }, */
+         trigger: { in: 60, unit: ELocalNotificationTriggerUnit.MINUTE },
       trigger: { in: 10, unit: ELocalNotificationTriggerUnit.SECOND },
       foreground: true,
 
-    })
+    }) */
     this.router.navigate(['tabs/tab4'])
   }
 

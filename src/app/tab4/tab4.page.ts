@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications/ngx';
+/* import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications/ngx'; */
 import { Platform, AlertController, ToastController } from '@ionic/angular'
 import { ApiService } from '../providers/api.service';
 import { Guard } from '../models/guard.interface';
@@ -28,7 +28,7 @@ export class Tab4Page {
     public formBuilder: FormBuilder,
     private api: ApiService,
     private plt: Platform,
-    private localNotifications: LocalNotifications,
+    /* private localNotifications: LocalNotifications, */
     private auth: AuthService,
     private alertCtrl: AlertController,
     private router: Router

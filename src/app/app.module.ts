@@ -14,7 +14,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Toast } from '@ionic-native/toast/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx'
+/* import { LocalNotifications } from '@ionic-native/local-notifications/ngx' */
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +26,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     AuthService,
     InAppBrowser,
     SplashScreen,
-    LocalNotifications,
+    /* LocalNotifications, */
     Toast,
     {
       provide: HTTP_INTERCEPTORS,
