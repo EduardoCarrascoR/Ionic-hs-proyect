@@ -13,4 +13,6 @@ export interface Guard {
   password?: string;
   shiftId?: number;
   client?: number;
+  visitId?: number;
+
 }

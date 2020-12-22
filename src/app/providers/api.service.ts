@@ -7,6 +7,7 @@ import { Shift } from '../models/shift.interface';
 import { Visitor } from '../models/visitor.interface';
 import { Report } from '../models/report.interface';
 import { initShift } from '../models/initShift.interface';
+import { Out } from '../models/out.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,7 @@ export class ApiService {
   /* /api/shifts/init/{id}/{idClient} 
   body: idGuard*/
   initShift(id: number, idClient: number, idGuard: number): Observable<initShift> {
+
     return this.http.put<initShift>(this.apiUrl + '/shifts/init/' + id + '/' + idClient, {idGuard});
   }
 
@@ -68,4 +70,8 @@ export class ApiService {
 
   }
 
+  outVisit(shiftId: number, visitId:number, out:string): Observable<Guard> {
+    console.table({shiftId,visitId, out})
+    return this.http.put<Guard>(this.apiUrl + '/visits/out/', {shiftId,visitId, out});
+  }
 }

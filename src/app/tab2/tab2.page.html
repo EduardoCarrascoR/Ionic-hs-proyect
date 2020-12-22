@@ -17,26 +17,46 @@
         <ion-col>
           <ion-item>
              <ion-label>NOMBRE</ion-label>
-             <ion-label>PATENTE</ion-label>
-             <ion-label>RUT</ion-label>
+             <ion-label>PATENTE </ion-label>
+             <ion-label> RUT</ion-label>
+             <ion-label>Entrada</ion-label>
+             <ion-label>Salida</ion-label>
           </ion-item>
         </ion-col>
       </ion-row>
     </ion-grid>
     
-    <ion-item *ngFor="let visita of visitas">
-      <ion-label>
-        {{visita.name}}
-      </ion-label>
-      <ion-label>
-        {{visita.patent}}
-      </ion-label>
-      <ion-label>
-        {{visita.rut}}
-      </ion-label>
+    <ion-item *ngFor="let visita of visitas" >
+      <div (click)="saveVisitData(visita.visitId, visita.shiftShiftId, visita.name)">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-label (click)="openModal2()">
+                {{visita.name}}
+              
+              
+                {{visita.patent}}
+              
+                
+             
+                {{visita.rut}}
+             
+                {{visita.in}}
+        
+                {{visita.out}}
+                <!-- {{visita.visitId}} -->
+                <!-- {{visita.shiftShiftId}} -->
+                <!-- <ion-label (click)=""> -->
+               <!--  {{visita.out}} -->
+              </ion-label>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    </div>
     </ion-item>
   </ion-list>
-
+  
   <ion-fab size="large" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon name="add" (click)="openModal()"></ion-icon>

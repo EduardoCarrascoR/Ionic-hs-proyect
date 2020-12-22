@@ -83,7 +83,7 @@ export class Tab1Page implements OnInit {
 
   saveId() {
     /*  console.log(this.shiftId) */
-
+    
     this.guard.shiftId = parseInt(this.shiftId.split('$')[0])
     this.guard.client = parseInt(this.shiftId.split('$')[1])
     /*  this.shift. = client.toString() */
@@ -93,13 +93,13 @@ export class Tab1Page implements OnInit {
     /*   console.table(this.guard) */
   }
 
-  async initShift() {
+  /* async initShift() {
     this.api.initShift(this.guard.shiftId, this.guard.client, this.guard.id).toPromise()
       .then((data: any) => {
 
       }).catch(error => {
         this.presentToast('La ronda ya se encuentra iniciada.')
-      })
+      }) */
 
    /*  await this.localNotifications.schedule({
       id: 10,
@@ -111,15 +111,15 @@ export class Tab1Page implements OnInit {
       foreground: true,
 
     }) */
-  }
+ /*  } */
 
-  finalShift() {
+  /* finalShift() {
     this.api.finalShift(this.guard.shiftId, this.guard.client, this.guard.id).toPromise()
       .then((data: any) => {
       }).catch(error => {
         this.presentToast('La ronda ya se encuentra finalizada.')
       })
-  }
+  } */
 
   openUrl() {
     this.browser.create('https://www.google.cl/maps/', '_self')
@@ -147,6 +147,63 @@ export class Tab1Page implements OnInit {
       message: msg,
       buttons: ['OK']
     }).then(alert => alert.present());
+  }
+
+  async presentAlert() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta',
+      message: 'Desea finalizar la ronda',
+      buttons: [{
+        text: 'Okay',
+        handler: () => {
+          this.api.finalShift(this.guard.shiftId, this.guard.client, this.guard.id).toPromise()
+      .then((data: any) => {
+      }).catch(error => {
+        this.presentToast('La ronda ya se encuentra finalizada.')
+      })
+        }
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+          console.log('Confirm Cancel: cancel');
+        }
+      }]
+    });
+
+    await alert.present();
+  }
+
+  async presentAlert2() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta',
+      message: 'Desea iniciar la ronda',
+      buttons: [{
+        text: 'Aceptar',
+        handler: () => {
+          this.api.initShift(this.guard.shiftId, this.guard.client, this.guard.id).toPromise()
+      .then((data: any) => {
+
+      }).catch(error => {
+        this.presentToast('La ronda ya se encuentra iniciada.')
+      })
+        }
+      },
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+          console.log('Confirm Cancel: cancel');
+        }
+      }]
+    });
+
+    await alert.present();
   }
 
 }

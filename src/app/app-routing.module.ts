@@ -20,6 +20,11 @@ const routes: Routes = [
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
+  },
+  
+  {
+    path: 'out',
+    loadChildren: () => import('./modals/out/out.module').then( m => m.OutPageModule)
   }
 ];
 @NgModule({

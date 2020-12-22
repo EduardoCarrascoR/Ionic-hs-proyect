@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
 import { Guard } from '../models/guard.interface';
 import { AuthService } from '../providers/auth.service';
 import { Visitor } from '../models/visitor.interface'
-
+import { OutPage } from '../modals/out/out.page'
+import { Out } from '../models/out.interface';
 
 @Component({
   selector: 'app-tab2',
@@ -17,12 +18,13 @@ import { Visitor } from '../models/visitor.interface'
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-
+  
   visitas: Visitor[]
   visitas$: Observable<Visitor[]>
   shifts: Shift[]
   shifts$: Observable<Shift[]>
   guard: Guard
+  out: Visitor
   constructor(
     private auth: AuthService,
     private modalController: ModalController,
@@ -44,7 +46,6 @@ export class Tab2Page {
       .then((data: any) => {
         this.visitas = data.visits;
         /* console.table(this.visitas) */
-        
       })
 
 
@@ -57,6 +58,18 @@ export class Tab2Page {
     return await modal.present();
   }
 
+  saveVisitData(visitId: number, shiftShiftId: number, name:string){
+
+    this.guard.visitId = visitId
+    localStorage.setItem('guard',JSON.stringify(this.guard))
+    console.table(this.guard)
+  }
+  async openModal2() {
+    const modal = await this.modalController.create({
+      component: OutPage
+    });
+    return await modal.present();
+  }
 
 
   ngOninit() {

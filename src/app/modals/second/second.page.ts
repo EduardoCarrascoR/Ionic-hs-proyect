@@ -49,12 +49,14 @@ export class SecondPage implements OnInit {
       name: new FormControl('', Validators.required),
       rut: new FormControl('', Validators.required),
       patent: new FormControl('', Validators.required),
-      shiftId: [this.guard.shiftId, Validators.required]
+      shiftId: [this.guard.shiftId, Validators.required],
+      in: new FormControl(JSON.stringify(''), Validators.required),
     })
   }
 
   registerVisitor() {
     this.api.registerVisitor(this.registerVisitorForm.value).toPromise().then(() => {
+      console.log(this.registerVisitorForm.value)
       this.router.navigate(['tabs/tab2'])
     }).catch(error => { console.log(error) })
 
