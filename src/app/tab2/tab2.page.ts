@@ -50,7 +50,20 @@ export class Tab2Page {
 
 
   }
+  doRefresh( event ){
+    
+    
+    setTimeout(()=>{
+      this.visitas$ = this.api.getVisitors(this.guard.shiftId)
+      this.api.getVisitors(this.guard.shiftId).toPromise()
+        .then((data: any) => {
+          this.visitas = data.visits;
+          /* console.table(this.visitas) */
+        })
+      event.target.complete();
+    }, 1500);
 
+  }
   async openModal() {
     const modal = await this.modalController.create({
       component: SecondPage
@@ -58,7 +71,7 @@ export class Tab2Page {
     return await modal.present();
   }
 
-  saveVisitData(visitId: number, shiftShiftId: number, name:string){
+  saveVisitData(visitId: number){
 
     this.guard.visitId = visitId
     localStorage.setItem('guard',JSON.stringify(this.guard))

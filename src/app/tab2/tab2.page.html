@@ -6,9 +6,17 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="valign-wrapper2">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-header>
     <ion-title>
-    <br><br>
+      <br><br>
     </ion-title>
   </ion-header>
   <ion-list class="valign-wrapper4">
@@ -16,11 +24,11 @@
       <ion-row>
         <ion-col>
           <ion-item>
-             <ion-label>NOMBRE</ion-label>
-             <ion-label>PATENTE </ion-label>
-             <ion-label> RUT</ion-label>
-             <ion-label>Entrada</ion-label>
-             <ion-label>Salida</ion-label>
+            <ion-label>NOMBRE</ion-label>
+            <ion-label>PATENTE </ion-label>
+            <ion-label> RUT</ion-label>
+            <ion-label>Entrada</ion-label>
+            <ion-label>Salida</ion-label>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -48,12 +56,13 @@
                 <!-- {{visita.shiftShiftId}} -->
                 <!-- <ion-label (click)=""> -->
                <!--  {{visita.out}} -->
+             
               </ion-label>
-
+              
             </ion-col>
           </ion-row>
         </ion-grid>
-    </div>
+      </div>
     </ion-item>
   </ion-list>
   
@@ -63,3 +72,4 @@
     </ion-fab-button>
     
   </ion-fab>
+</ion-content>
