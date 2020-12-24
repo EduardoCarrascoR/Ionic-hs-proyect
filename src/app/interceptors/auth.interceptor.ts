@@ -9,7 +9,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>,
     next: HttpHandler): Observable<HttpEvent<any>> {
 
-      const guard: Guard = JSON.parse(localStorage.getItem("guard"))
+      const guard: Guard = JSON.parse(sessionStorage.getItem("guard"))
       /* console.table(guard) */
       
       if (guard) {

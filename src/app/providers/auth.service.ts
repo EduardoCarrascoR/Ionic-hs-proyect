@@ -33,7 +33,7 @@ export class AuthService {
           const decoded = jwtDecode<JwtPayload>(token);
          /*  console.log('algo text', decoded); */
           res.data['id'] = decoded.sub
-          localStorage.setItem('guard', JSON.stringify(res.data))
+          sessionStorage.setItem('guard', JSON.stringify(res.data))
           this.router.navigate(['/tabs/tab1'])
         } else {
           throw new Error('no se logro logear')
@@ -48,14 +48,14 @@ export class AuthService {
       })
   }
   logout(){
-    localStorage.removeItem('guard');
+    sessionStorage.removeItem('guard');
     this.ngZone.run(() => {
       this.navController.navigateRoot(['/login'])
     });
   }
 
   isLogged() {
-    if (localStorage.getItem("guard") == null) {
+    if (sessionStorage.getItem("guard") == null) {
       return false;
     }
     else {
@@ -64,7 +64,7 @@ export class AuthService {
   }
 
   guardData(){
-    return JSON.parse(localStorage.getItem('guard'))
+    return JSON.parse(sessionStorage.getItem('guard'))
   }
 
 }

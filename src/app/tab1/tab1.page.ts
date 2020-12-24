@@ -87,7 +87,7 @@ export class Tab1Page implements OnInit {
     this.guard.shiftId = parseInt(this.shiftId.split('$')[0])
     this.guard.client = parseInt(this.shiftId.split('$')[1])
     /*  this.shift. = client.toString() */
-    localStorage.setItem('guard', JSON.stringify(this.guard))
+    sessionStorage.setItem('guard', JSON.stringify(this.guard))
 
 
     /*   console.table(this.guard) */

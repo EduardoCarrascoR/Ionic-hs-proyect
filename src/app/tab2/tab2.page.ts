@@ -74,7 +74,7 @@ export class Tab2Page {
   saveVisitData(visitId: number){
 
     this.guard.visitId = visitId
-    localStorage.setItem('guard',JSON.stringify(this.guard))
+    sessionStorage.setItem('guard',JSON.stringify(this.guard))
     console.table(this.guard)
   }
   async openModal2() {
