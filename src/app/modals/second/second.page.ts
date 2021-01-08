@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Guard } from 'src/app/models/guard.interface';
 import { AuthService } from 'src/app/providers/auth.service';
@@ -24,26 +24,27 @@ export class SecondPage implements OnInit {
     public formBuilder: FormBuilder,
     private auth: AuthService,
     private api: ApiService,
+    public toastController: ToastController,
     private router: Router
   ) {
+    /* Trae los datos del guardia */
     new Promise((resolve, reject) => {
       this.guard = this.auth.guardData()
-     /*  console.table(this.guard) */
       resolve()
     }).then(() => {
       this.shifts$ = this.api.getGuardShift(this.guard.id)
       this.api.getGuardShift(this.guard.id).toPromise()
         .then((data: any) => {
           this.shifts = data.shifts;
-         /*  console.table(this.shifts) */
         })
     })
-
+    /* instacia la variable conn lo registrado en el formulario */
     this.registerVisitorForm = this.createRegisterVisitorForm();
   }
 
   ngOnInit() {
   }
+  /* crea el formato del formulario a usar */
   createRegisterVisitorForm() {
     return this.formBuilder.group({
       name: new FormControl('', Validators.required),
@@ -54,14 +55,26 @@ export class SecondPage implements OnInit {
     })
   }
 
+/* Envia los datos del formulario a la api */
   registerVisitor() {
     this.api.registerVisitor(this.registerVisitorForm.value).toPromise().then(() => {
       console.log(this.registerVisitorForm.value)
       this.router.navigate(['tabs/tab2'])
-    }).catch(error => { console.log(error) })
-
+    }).catch(error => { 
+      this.presentToast('Error al guardar visitante') 
+    })
   }
+  
   async closeModal() {
     await this.modalController.dismiss();
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      color: 'danger',
+      duration: 2000
+    });
+    toast.present();
   }
 }
