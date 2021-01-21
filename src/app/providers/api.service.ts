@@ -16,8 +16,8 @@ export class ApiService {
 
   //url de la api del backend donde se realizan las consultas post, get y put
 
-   //private apiUrl = 'http://localhost:3000/api'
-   private apiUrl = 'http://server.highsecurity.cl/api'
+   private apiUrl = 'http://highsecurity-app.herokuapp.com/api'
+   /* private apiUrl = 'http://server.highsecurity.cl/api' */
   constructor(
     private http: HttpClient
   ) {

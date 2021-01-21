@@ -35,7 +35,7 @@
         </ion-item>
         
         <ion-item class="wrapper2"> 
-          <ion-input placeholder="Ej: 11.111.111-0" formControlName="rut"></ion-input>
+          <ion-input placeholder="Ej: 11.111.111-0" [(ngModel)]='variableRut' (click)="rut($formatRut)" formControlName="rut"></ion-input>
         </ion-item>
 
         <ion-item class="wrapper2">
