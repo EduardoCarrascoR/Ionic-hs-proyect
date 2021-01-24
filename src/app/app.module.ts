@@ -16,6 +16,7 @@ import { Toast } from '@ionic-native/toast/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 /* import { LocalNotifications } from '@ionic-native/local-notifications/ngx' */
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -26,6 +27,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     AuthService,
     InAppBrowser,
     SplashScreen,
+    Geolocation,
     /* LocalNotifications, */
     Toast,
     {

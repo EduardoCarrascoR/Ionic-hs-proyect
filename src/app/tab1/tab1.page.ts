@@ -10,6 +10,7 @@ import { AuthService } from '../providers/auth.service';
 /* import { ELocalNotificationTriggerUnit, LocalNotifications } from '@ionic-native/local-notifications/ngx'; */
 import { Router } from '@angular/router';
 import { $ } from 'protractor';
+import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -21,12 +22,16 @@ export class Tab1Page implements OnInit {
   guard: Guard
   shifts: Shift[]
   shift: Shift
+  lat:number
+  lon:number
+  total:string
 
   shiftId
   constructor(
     public toastController: ToastController,
     private api: ApiService,
     private browser: InAppBrowser,
+    private geolocation: Geolocation,
    /*  private localNotifications: LocalNotifications, */
     private auth: AuthService,
     private plt: Platform,
@@ -175,6 +180,16 @@ export class Tab1Page implements OnInit {
     });
 
     await alert.present();
+  }
+
+
+  getGeolocation(){
+    this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
+      this.lat = geoposition.coords.latitude;
+      this.lon = geoposition.coords.longitude;
+      console.log(this.lat)
+      console.log(this.lon)
+    });
   }
 
 }
