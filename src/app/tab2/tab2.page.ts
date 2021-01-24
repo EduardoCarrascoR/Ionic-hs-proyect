@@ -11,7 +11,7 @@ import { AuthService } from '../providers/auth.service';
 import { Visitor } from '../models/visitor.interface'
 import { OutPage } from '../modals/out/out.page'
 import { Out } from '../models/out.interface';
-
+import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -25,8 +25,12 @@ export class Tab2Page {
   shifts$: Observable<Shift[]>
   guard: Guard
   out: Visitor
+  lat:number
+  lon:number
+  total:string
   constructor(
     private auth: AuthService,
+    private geolocation: Geolocation,
     private modalController: ModalController,
     private api: ApiService
   ) {
@@ -91,6 +95,17 @@ export class Tab2Page {
 
   ngOninit() {
   }
-
+  getGeolocation(){
+    this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
+      this.lat = geoposition.coords.latitude;
+      this.lon = geoposition.coords.longitude;
+      console.log('latitud: '+this.lat)
+      console.log('longitud: '+this.lon)
+      var gps = this.lat + '%2C' + this.lon
+      console.log('coordenadas juntas: '+gps)
+      var guard_id = this.guard.id
+      console.log('guard id: '+guard_id)
+    });
+  }
 }
 

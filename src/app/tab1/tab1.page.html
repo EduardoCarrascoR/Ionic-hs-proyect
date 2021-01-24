@@ -10,7 +10,7 @@
 <ion-content padding class="valign-wrapper2">
   <!-- boton de finalizar turno -->
   <ion-fab size="large" vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button color="dark" (click)='presentAlert()'>
+      <ion-fab-button color="dark" (click)='presentAlert()' (click)='getGeolocation()'>
       <ion-icon name="log-out"></ion-icon>
       finish
     </ion-fab-button>
@@ -18,7 +18,7 @@
 
 <!-- boton de iniciar turno -->
   <ion-fab size="large" vertical="bottom" horizontal="start" slot="fixed">
-      <ion-fab-button color="dark" (click)='presentAlert2()'>
+      <ion-fab-button color="dark" (click)='presentAlert2()' (click)='getGeolocation()'>
       <ion-icon name="stopwatch"></ion-icon>
       start
     </ion-fab-button>
@@ -32,7 +32,7 @@
   <br><br>
   
   <!-- boton de rondas de la semana -->
-  <ion-button size="large" expand="block" (click)="openModal()" color="medium">ver rondas de la semana</ion-button>
+  <ion-button size="large" expand="block" (click)="openModal()" color="medium" (click)='getGeolocation()'>ver rondas de la semana</ion-button>
   <br><br>
   
 <!-- seleccionador de rondas para iniciar -->
@@ -41,7 +41,7 @@
       Elegir turno a iniciar:
     </ion-label>
     <ion-select value="brown" okText="Okay" cancelText="Dismiss" class="ion-text-wrap" (ionChange)='saveId()'
-      [(ngModel)]='shiftId'>
+      [(ngModel)]='shiftId' (click)='getGeolocation()'>
 
       <ion-select-option class="ion-text-wrap" [value]="shift.shiftId + '$' +shift.client" *ngFor="let shift of shifts">
         {{shift.date}}
@@ -52,6 +52,6 @@
   <br><br>
 
   <!-- boton para desplegar ventana de regitrar incidente -->
-  <ion-button (click)='getGeolocation()' shape="round" size="large" expand="block">Registrar nuevo Incidente</ion-button>
+  <ion-button (click)='getGeolocation()' (click)='notification()' shape="round" size="large" expand="block">Registrar nuevo Incidente</ion-button>
   <br><br>
 </ion-content>

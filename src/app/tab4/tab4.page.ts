@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../providers/auth.service';
 import { Incident } from '../models/incident.interface';
 import { Router } from '@angular/router';
-
+import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-tab4',
@@ -22,12 +22,16 @@ export class Tab4Page {
   shifts: Shift[]
   guard: Guard
   incident: Incident[]
+  lat:number
+  lon:number
+  total:string
 
   constructor(
     public toastController: ToastController,
     public formBuilder: FormBuilder,
     private api: ApiService,
     private plt: Platform,
+    private geolocation: Geolocation,
     /* private localNotifications: LocalNotifications, */
     private auth: AuthService,
     private alertCtrl: AlertController,
@@ -89,5 +93,18 @@ export class Tab4Page {
 
   ngOninit() {
 
+  }
+
+  getGeolocation(){
+    this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
+      this.lat = geoposition.coords.latitude;
+      this.lon = geoposition.coords.longitude;
+      console.log('latitud: '+this.lat)
+      console.log('longitud: '+this.lon)
+      var gps = this.lat + '%2C' + this.lon
+      console.log('coordenadas juntas: '+gps)
+      var guard_id = this.guard.id
+      console.log('guard id: '+guard_id)
+    });
   }
 }

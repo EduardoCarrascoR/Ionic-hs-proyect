@@ -11,20 +11,20 @@
   <ion-list class="valign-wrapper4">
     <br>
     <ion-button expand="block" shape="round" color="warning" size="large" (click)="reportes('Ambulance')"
-      href="tel:131">Ambulancia</ion-button>
+      href="tel:131" (click)='getGeolocation()'>Ambulancia</ion-button>
     <br>
     <ion-button expand="block" shape="round" color="success" size="large" (click)="reportes('Police')" 
-      href="tel:133"> Carabineros</ion-button>
+      href="tel:133" (click)='getGeolocation()'> Carabineros</ion-button>
     <br>
     <ion-button expand="block" shape="round" color="danger" size="large" (click)="reportes('Firefighter')"
-      href="tel:132">Bomberos</ion-button>
+      href="tel:132" (click)='getGeolocation()'>Bomberos</ion-button>
     <br>
     <br>
     <ion-button expand="block" shape="round" color="dark" size="large" (click)="reportes('Office1')"
-     href="tel:933906268" >HS-Office N°1</ion-button>
+     href="tel:933906268" (click)='getGeolocation()'>HS-Office N°1</ion-button>
     <br>
     <ion-button expand="block" shape="round" color="dark" size="large" (click)="reportes('Office2')"
-     href="tel:988890489" >HS-Office N°2</ion-button>
+     href="tel:988890489" (click)='getGeolocation()'>HS-Office N°2</ion-button>
     <br>
   </ion-list>
 

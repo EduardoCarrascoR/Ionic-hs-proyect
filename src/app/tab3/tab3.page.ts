@@ -9,7 +9,7 @@ import { Shift } from '../models/shift.interface';
 import { Observable } from 'rxjs';
 import { Visitor } from '../models/visitor.interface';
 import { parseSelectorToR3Selector } from '@angular/compiler/src/core';
-
+import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -25,10 +25,14 @@ export class Tab3Page {
   shift: Shift
   visitas: Visitor[]
   visitas$: Observable<Visitor[]>
+  lat:number
+  lon:number
+  total:string
   constructor(
     public formBuilder: FormBuilder,
     private api: ApiService,
     private router: Router,
+    private geolocation: Geolocation,
     private auth: AuthService
   ) {
     /* se traen datos del guardia y la ronda */
@@ -79,4 +83,17 @@ export class Tab3Page {
 
   }
 
+  
+  getGeolocation(){
+    this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
+      this.lat = geoposition.coords.latitude;
+      this.lon = geoposition.coords.longitude;
+      console.log('latitud: '+this.lat)
+      console.log('longitud: '+this.lon)
+      var gps = this.lat + '%2C' + this.lon
+      console.log('coordenadas juntas: '+gps)
+      var guard_id = this.guard.id
+      console.log('guard id: '+guard_id)
+    });
+  }
 }

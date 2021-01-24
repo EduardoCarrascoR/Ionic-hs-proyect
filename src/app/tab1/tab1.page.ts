@@ -187,8 +187,12 @@ export class Tab1Page implements OnInit {
     this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
       this.lat = geoposition.coords.latitude;
       this.lon = geoposition.coords.longitude;
-      console.log(this.lat)
-      console.log(this.lon)
+      console.log('latitud: '+this.lat)
+      console.log('longitud: '+this.lon)
+      var gps = this.lat + '%2C' + this.lon
+      console.log('coordenadas juntas: '+gps)
+      var guard_id = this.guard.id
+      console.log('guard id: '+guard_id)
     });
   }
 
