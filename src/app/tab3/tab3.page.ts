@@ -82,28 +82,25 @@ export class Tab3Page {
     }
 
   }
-
+  addZero(i){
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
   
   getGeolocation(){
     this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
       this.lat = geoposition.coords.latitude;
       this.lon = geoposition.coords.longitude;
-      console.log('latitud: '+this.lat)
-      console.log('longitud: '+this.lon)
-      /* var gps = this.lat + '%2C, ' + this.lon */
       var gps = this.lat +","+ this.lon
-      /* console.log('coordenadas juntas: '+gps) */
       var guard_id = this.guard.id
-      var timeLocation = '19:50'
       var client = this.guard.client
       var shiftId = this.guard.shiftId
-      /* console.log('guard id: '+guard_id)
-      console.log(timeLocation)
-      console.log(client)
-      console.log(shiftId) */
+      var timeNow = new Date().getHours() + ':' + this.addZero(new Date().getMinutes());
+      var timeLocation = timeNow
       this.api.gps(guard_id, shiftId, gps, client, timeLocation).toPromise()
       .then((data: any) => {
-
       })
     });
   }
