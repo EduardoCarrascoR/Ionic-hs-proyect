@@ -11,6 +11,7 @@ import { AuthService } from '../providers/auth.service';
 import { Router } from '@angular/router';
 import { $ } from 'protractor';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-tab1',
@@ -189,10 +190,21 @@ export class Tab1Page implements OnInit {
       this.lon = geoposition.coords.longitude;
       console.log('latitud: '+this.lat)
       console.log('longitud: '+this.lon)
-      var gps = this.lat + '%2C' + this.lon
-      console.log('coordenadas juntas: '+gps)
+      /* var gps = this.lat + '%2C, ' + this.lon */
+      var gps = this.lat +","+ this.lon
+      /* console.log('coordenadas juntas: '+gps) */
       var guard_id = this.guard.id
-      console.log('guard id: '+guard_id)
+      var timeLocation = '19:50'
+      var client = this.guard.client
+      var shiftId = this.guard.shiftId
+      /* console.log('guard id: '+guard_id)
+      console.log(timeLocation)
+      console.log(client)
+      console.log(shiftId) */
+      this.api.gps(guard_id, shiftId, gps, client, timeLocation).toPromise()
+      .then((data: any) => {
+
+      })
     });
   }
 

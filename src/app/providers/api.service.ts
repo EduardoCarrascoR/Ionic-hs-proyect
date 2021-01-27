@@ -7,6 +7,7 @@ import { Shift } from '../models/shift.interface';
 import { Visitor } from '../models/visitor.interface';
 import { Report } from '../models/report.interface';
 import { initShift } from '../models/initShift.interface';
+import { Gps } from '../models/gps.interface';
 
 
 @Injectable({
@@ -73,4 +74,12 @@ export class ApiService {
   outVisit(shiftId: number, visitId:number, out:string): Observable<Guard> {
     return this.http.put<Guard>(this.apiUrl + '/visits/out/', {shiftId,visitId, out});
   }
+
+
+  gps(shiftId: number, id:number, location:string, idClient: number, timeLocation: string): Observable<Gps> {
+    /* return this.http.post<Gps>(this.apiUrl + '/shifts/'+ shiftId +'/client/' + idClient + '/setGuardLocation/'+id, {location,timeLocation}); */
+    return this.http.post<Gps>(this.apiUrl + '/shifts/'+ id +'/client/' + idClient + '/setGuardLocation/'+shiftId, {location,timeLocation});
+  }
+
+
 }

@@ -18,7 +18,7 @@
 
 <!-- boton de iniciar turno -->
   <ion-fab size="large" vertical="bottom" horizontal="start" slot="fixed">
-      <ion-fab-button color="dark" (click)='presentAlert2()' (click)='getGeolocation()'>
+      <ion-fab-button color="dark" (click)='presentAlert2()' >
       <ion-icon name="stopwatch"></ion-icon>
       start
     </ion-fab-button>
@@ -32,7 +32,7 @@
   <br><br>
   
   <!-- boton de rondas de la semana -->
-  <ion-button size="large" expand="block" (click)="openModal()" color="medium" (click)='getGeolocation()'>ver rondas de la semana</ion-button>
+  <ion-button size="large" expand="block" (click)="openModal()" color="medium" >ver rondas de la semana</ion-button>
   <br><br>
   
 <!-- seleccionador de rondas para iniciar -->
@@ -41,7 +41,7 @@
       Elegir turno a iniciar:
     </ion-label>
     <ion-select value="brown" okText="Okay" cancelText="Dismiss" class="ion-text-wrap" (ionChange)='saveId()'
-      [(ngModel)]='shiftId' (click)='getGeolocation()'>
+      [(ngModel)]='shiftId' >
 
       <ion-select-option class="ion-text-wrap" [value]="shift.shiftId + '$' +shift.client" *ngFor="let shift of shifts">
         {{shift.date}}
