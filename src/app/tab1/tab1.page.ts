@@ -133,6 +133,19 @@ export class Tab1Page implements OnInit {
       buttons: [{
         text: 'Okay',
         handler: () => {
+          this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
+            this.lat = geoposition.coords.latitude;
+            this.lon = geoposition.coords.longitude;
+            var gps = this.lat +","+ this.lon
+            var guard_id = this.guard.id
+            var client = this.guard.client
+            var shiftId = this.guard.shiftId
+            var timeNow = new Date().getHours() + ':' + this.addZero(new Date().getMinutes());
+            var timeLocation = timeNow
+            this.api.removeGps(guard_id, shiftId, gps, client).toPromise()
+            .then((data: any) => {
+            })
+          });
           this.api.finalShift(this.guard.shiftId, this.guard.client, this.guard.id).toPromise()
       .then((data: any) => {
       }).catch(error => {
@@ -164,7 +177,19 @@ export class Tab1Page implements OnInit {
         handler: () => {
           this.api.initShift(this.guard.shiftId, this.guard.client, this.guard.id).toPromise()
       .then((data: any) => {
-
+        this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
+          this.lat = geoposition.coords.latitude;
+          this.lon = geoposition.coords.longitude;
+          var gps = this.lat +","+ this.lon
+          var guard_id = this.guard.id
+          var client = this.guard.client
+          var shiftId = this.guard.shiftId
+          var timeNow = new Date().getHours() + ':' + this.addZero(new Date().getMinutes());
+          var timeLocation = timeNow
+          this.api.gps(guard_id, shiftId, gps, client).toPromise()
+          .then((data: any) => {
+          })
+        });
       }).catch(error => {
         this.presentToast('La ronda ya se encuentra iniciada.')
       })
@@ -179,6 +204,7 @@ export class Tab1Page implements OnInit {
         }
       }]
     });
+    
 
     await alert.present();
   }
@@ -201,12 +227,13 @@ export class Tab1Page implements OnInit {
       var shiftId = this.guard.shiftId
       var timeNow = new Date().getHours() + ':' + this.addZero(new Date().getMinutes());
       var timeLocation = timeNow
-      this.api.gps(guard_id, shiftId, gps, client, timeLocation).toPromise()
+      this.api.gps(guard_id, shiftId, gps, client).toPromise()
       .then((data: any) => {
       })
     });
   }
 
+  
 }
 
 

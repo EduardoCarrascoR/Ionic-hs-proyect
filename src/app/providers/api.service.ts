@@ -17,8 +17,8 @@ export class ApiService {
 
   //url de la api del backend donde se realizan las consultas post, get y put
 
-   private apiUrl = 'http://highsecurity-app.herokuapp.com/api'
-   /* private apiUrl = 'http://server.highsecurity.cl/api' */
+ /*   private apiUrl = 'http://highsecurity-app.herokuapp.com/api' */
+   private apiUrl = 'http://server.highsecurity.cl/api'
   constructor(
     private http: HttpClient
   ) {
@@ -76,10 +76,12 @@ export class ApiService {
   }
 
 
-  gps(shiftId: number, id:number, location:string, idClient: number, timeLocation: string): Observable<Gps> {
-    /* return this.http.post<Gps>(this.apiUrl + '/shifts/'+ shiftId +'/client/' + idClient + '/setGuardLocation/'+id, {location,timeLocation}); */
-    return this.http.post<Gps>(this.apiUrl + '/shifts/'+ id +'/client/' + idClient + '/setGuardLocation/'+shiftId, {location,timeLocation});
+  gps(shiftId: number, id:number, location:string, idClient: number): Observable<Gps> {
+    return this.http.post<Gps>(this.apiUrl + '/shifts/setGuardLocation/'+ id +'/client/' + idClient + '/guard/'+shiftId, {location});
+    /* return this.http.post<Gps>(this.apiUrl + '/shifts/'+ id +'/client/' + idClient + '/setGuardLocation/'+shiftId, {location}); */
   }
 
-
+  removeGps(shiftId: number, id:number, location:string, idClient: number): Observable<Gps>{
+    return this.http.delete<Gps>(this.apiUrl + '/shifts/deleteGuardLocation/'+ id +'/client/' + idClient + '/guard/'+shiftId);
+  }
 }

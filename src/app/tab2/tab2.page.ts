@@ -110,10 +110,17 @@ export class Tab2Page {
       var shiftId = this.guard.shiftId
       var timeNow = new Date().getHours() + ':' + this.addZero(new Date().getMinutes());
       var timeLocation = timeNow
-      this.api.gps(guard_id, shiftId, gps, client, timeLocation).toPromise()
+      console.log(gps)
+      this.api.gps(guard_id, shiftId, gps, client).toPromise()
       .then((data: any) => {
       })
     });
   }
+
+ 
 }
+
+
+
+
 
